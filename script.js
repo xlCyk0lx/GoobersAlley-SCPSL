@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const knowledgeSlider = document.getElementById('staff-knowledge');
     const knowledgeValue = document.getElementById('knowledge-value');
     
+    // Initialize data storage if needed
+    initializeDataStorage();
+    
     // Event listeners for option cards
     staffOption.addEventListener('click', function() {
         showForm(staffForm);
@@ -65,16 +68,73 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        const staffApplication = {
+            id: generateId(),
+            type: 'staff',
+            email: document.getElementById('staff-email').value,
+            ingameName: document.getElementById('staff-ingame').value,
+            discord: document.getElementById('staff-discord').value,
+            age: document.getElementById('staff-age').value,
+            experience: document.getElementById('staff-experience').value,
+            why: document.getElementById('staff-why').value,
+            hoursPerWeek: document.getElementById('staff-hours').value,
+            knowledgeLevel: document.getElementById('staff-knowledge').value,
+            status: 'pending', // pending, approved, rejected
+            dateSubmitted: new Date().toISOString(),
+            reviewedBy: null,
+            reviewDate: null,
+            comments: null
+        };
+        
+        saveStaffApplication(staffApplication);
         submitForm(this);
     });
     
     banAppealForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        const banAppeal = {
+            id: generateId(),
+            type: 'ban',
+            email: document.getElementById('ban-email').value,
+            ingameName: document.getElementById('ban-ingame').value,
+            discord: document.getElementById('ban-discord').value,
+            banDate: document.getElementById('ban-date').value,
+            reason: document.getElementById('ban-reason').value,
+            appeal: document.getElementById('ban-appeal').value,
+            learned: document.getElementById('ban-learn').value,
+            status: 'pending', // pending, approved, rejected
+            dateSubmitted: new Date().toISOString(),
+            reviewedBy: null,
+            reviewDate: null,
+            comments: null
+        };
+        
+        saveBanAppeal(banAppeal);
         submitForm(this);
     });
     
     muteAppealForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        const muteAppeal = {
+            id: generateId(),
+            type: 'mute',
+            email: document.getElementById('mute-email').value,
+            ingameName: document.getElementById('mute-ingame').value,
+            discord: document.getElementById('mute-discord').value,
+            muteType: document.getElementById('mute-type').value,
+            muteDate: document.getElementById('mute-date').value,
+            reason: document.getElementById('mute-reason').value,
+            appeal: document.getElementById('mute-appeal').value,
+            status: 'pending', // pending, approved, rejected
+            dateSubmitted: new Date().toISOString(),
+            reviewedBy: null,
+            reviewDate: null,
+            comments: null
+        };
+        
+        saveMuteAppeal(muteAppeal);
         submitForm(this);
     });
     
@@ -94,21 +154,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function submitForm(form) {
-        // In a real application, you would send the form data to a server here
-        // For now, we'll just simulate a successful submission
-        
-        // Log form data to console (for demonstration purposes)
-        const formData = new FormData(form);
-        console.log('Form submitted with the following data:');
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-        
         // Show success message
         hideAllForms();
         successMessage.classList.remove('hidden');
         
         // Reset the form
         form.reset();
+        if (form === staffApplicationForm) {
+            document.getElementById('knowledge-value').textContent = "5";
+            document.getElementById('staff-knowledge').value = 5;
+        }
+    }
+    
+    // Data storage functions
+    function initializeDataStorage() {
+        if (!localStorage.getItem('staffApplications')) {
+            localStorage.setItem('staffApplications', JSON.stringify([]));
+        }
+        if (!localStorage.getItem('banAppeals')) {
+            localStorage.setItem('banAppeals', JSON.stringify([]));
+        }
+        if (!localStorage.getItem('muteAppeals')) {
+            localStorage.setItem('muteAppeals', JSON.stringify([]));
+        }
+    }
+    
+    function saveStaffApplication(application) {
+        const applications = JSON.parse(localStorage.getItem('staffApplications'));
+        applications.push(application);
+        localStorage.setItem('staffApplications', JSON.stringify(applications));
+    }
+    
+    function saveBanAppeal(appeal) {
+        const appeals = JSON.parse(localStorage.getItem('banAppeals'));
+        appeals.push(appeal);
+        localStorage.setItem('banAppeals', JSON.stringify(appeals));
+    }
+    
+    function saveMuteAppeal(appeal) {
+        const appeals = JSON.parse(localStorage.getItem('muteAppeals'));
+        appeals.push(appeal);
+        localStorage.setItem('muteAppeals', JSON.stringify(appeals));
+    }
+    
+    // Helper function to generate unique IDs
+    function generateId() {
+        return Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
 });
