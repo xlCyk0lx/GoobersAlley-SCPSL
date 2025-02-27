@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Secret Laboratory Server Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://imgur.com/BGfMh8P.png" alt="SCP Server Logo" class="logo">
+            <h1>SCP SECRET LABORATORY</h1>
+            <p class="subtitle">SERVER PORTAL</p>
+        </header>
+        
+        <div class="options">
+            <div class="option-card" id="staff-option">
+                <i class="fas fa-user-tie"></i>
+                <h2>Apply for Staff</h2>
+                <p>Join our team and help maintain order in the facility</p>
+            </div>
+            
+            <div class="option-card" id="ban-option">
+                <i class="fas fa-gavel"></i>
+                <h2>Ban Appeal</h2>
+                <p>Request to have your ban reviewed and potentially lifted</p>
+            </div>
+            
+            <div class="option-card" id="mute-option">
+                <i class="fas fa-microphone-slash"></i>
+                <h2>Mute Appeal</h2>
+                <p>Appeal a voice or text chat mute</p>
+            </div>
+        </div>
+        
+        <div id="form-container" class="hidden">
+            <button id="back-button"><i class="fas fa-arrow-left"></i> Back</button>
+            <div id="staff-form" class="form hidden">
+                <h2>Staff Application</h2>
+                <form id="staff-application-form">
+                    <div class="form-group">
+                        <label for="staff-email">Email Address</label>
+                        <input type="email" id="staff-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-ingame">In-game Name</label>
+                        <input type="text" id="staff-ingame" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-discord">Discord Username</label>
+                        <input type="text" id="staff-discord" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-age">Age</label>
+                        <input type="number" id="staff-age" min="13" required>
+                        <p class="note">* Applicants must be 13 years or older</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-experience">Previous Experience</label>
+                        <textarea id="staff-experience" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-why">Why do you want to join our staff team?</label>
+                        <textarea id="staff-why" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-hours">How many hours per week can you dedicate?</label>
+                        <input type="number" id="staff-hours" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff-knowledge">Knowledge of SCP Secret Laboratory (1-10)</label>
+                        <input type="range" id="staff-knowledge" min="1" max="10" required>
+                        <div class="range-value"><span id="knowledge-value">5</span>/10</div>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+            
+            <div id="ban-form" class="form hidden">
+                <h2>Ban Appeal</h2>
+                <form id="ban-appeal-form">
+                    <div class="form-group">
+                        <label for="ban-email">Email Address</label>
+                        <input type="email" id="ban-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ban-ingame">In-game Name</label>
+                        <input type="text" id="ban-ingame" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ban-discord">Discord Username</label>
+                        <input type="text" id="ban-discord" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ban-date">Approximate Date of Ban</label>
+                        <input type="date" id="ban-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ban-reason">Reason for Ban (if known)</label>
+                        <textarea id="ban-reason" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ban-appeal">Why should we lift your ban?</label>
+                        <textarea id="ban-appeal" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ban-learn">What have you learned from this experience?</label>
+                        <textarea id="ban-learn" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Appeal</button>
+                </form>
+            </div>
+            
+            <div id="mute-form" class="form hidden">
+                <h2>Mute Appeal</h2>
+                <form id="mute-appeal-form">
+                    <div class="form-group">
+                        <label for="mute-email">Email Address</label>
+                        <input type="email" id="mute-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mute-ingame">In-game Name</label>
+                        <input type="text" id="mute-ingame" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mute-discord">Discord Username</label>
+                        <input type="text" id="mute-discord" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mute-type">Type of Mute</label>
+                        <select id="mute-type" required>
+                            <option value="">Select Mute Type</option>
+                            <option value="voice">Voice Chat Mute</option>
+                            <option value="text">Text Chat Mute</option>
+                            <option value="both">Both Voice and Text</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mute-date">Approximate Date of Mute</label>
+                        <input type="date" id="mute-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mute-reason">Reason for Mute (if known)</label>
+                        <textarea id="mute-reason" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="mute-appeal">Why should we lift your mute?</label>
+                        <textarea id="mute-appeal" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Appeal</button>
+                </form>
+            </div>
+            
+            <div id="success-message" class="hidden">
+                <i class="fas fa-check-circle"></i>
+                <h2>Submission Successful!</h2>
+                <p>Your form has been submitted successfully. Our team will review your submission and contact you if necessary.</p>
+                <button id="return-home" class="submit-btn">Return to Home</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 SCP Secret Laboratory Server | All Rights Reserved</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
