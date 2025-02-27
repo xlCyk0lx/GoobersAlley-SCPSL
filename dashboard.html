@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Secret Laboratory - Staff Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://imgur.com/BGfMh8P.png" alt="SCP Server Logo" class="logo">
+                <h2>SCP STAFF</h2>
+            </div>
+            <div class="user-info">
+                <div class="avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="user-details">
+                    <h3 id="user-name">Loading...</h3>
+                    <span id="user-role" class="role-badge">Loading...</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" data-section="applications">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Applications</span>
+                    </li>
+                    <li data-section="ban-appeals">
+                        <i class="fas fa-gavel"></i>
+                        <span>Ban Appeals</span>
+                    </li>
+                    <li data-section="mute-appeals">
+                        <i class="fas fa-microphone-slash"></i>
+                        <span>Mute Appeals</span>
+                    </li>
+                    <li data-section="staff-accounts" id="staff-accounts-nav">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Staff Accounts</span>
+                    </li>
+                    <li data-section="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <button id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." id="search-input">
+                </div>
+                <div class="actions">
+                    <button class="refresh-btn" id="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="dropdown" id="notifications-dropdown">
+                        <button class="notifications-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="dropdown-content">
+                            <h4>Notifications</h4>
+                            <div class="notification-item">
+                                <i class="fas fa-user-plus"></i>
+                                <div class="notification-text">
+                                    <p>New staff application submitted</p>
+                                    <span class="notification-time">2 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <i class="fas fa-gavel"></i>
+                                <div class="notification-text">
+                                    <p>New ban appeal requires review</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <i class="fas fa-microphone-slash"></i>
+                                <div class="notification-text">
+                                    <p>New mute appeal submitted</p>
+                                    <span class="notification-time">3 hours ago</span>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Sections -->
+            <div class="content-wrapper">
+                <!-- Applications Section -->
+                <section id="applications" class="content-section active">
+                    <div class="section-header">
+                        <h2><i class="fas fa-clipboard-list"></i> Staff Applications</h2>
+                        <div class="filter-options">
+                            <select id="application-filter">
+                                <option value="all">All Applications</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="applications-list" id="applications-list">
+                        <!-- Sample applications (would be populated dynamically in reality) -->
+                        <div class="application-card" data-id="app1">
+                            <div class="application-header">
+                                <h3>D-9341</h3>
+                                <span class="status pending">Pending</span>
+                            </div>
+                            <div class="application-details">
+                                <p><strong>Age:</strong> 17</p>
+                                <p><strong>Discord:</strong> D9341#1234</p>
+                                <p><strong>Email:</strong> d9341@scpsl.com</p>
+                                <p><strong>Experience:</strong> 2 years as moderator on other servers</p>
+                            </div>
+                            <div class="application-actions">
+                                <button class="view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                <button class="reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            </div>
+                        </div>
+                        
+                        <div class="application-card" data-id="app2">
+                            <div class="application-header">
+                                <h3>Dr. Bright</h3>
+                                <span class="status pending">Pending</span>
+                            </div>
+                            <div class="application-details">
+                                <p><strong>Age:</strong> 21</p>
+                                <p><strong>Discord:</strong> DrBright#9999</p>
+                                <p><strong>Email:</strong> bright@scpsl.com</p>
+                                <p><strong>Experience:</strong> Admin on several SCP communities</p>
+                            </div>
+                            <div class="application-actions">
+                                <button class="view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                <button class="reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Ban Appeals Section -->
+                <section id="ban-appeals" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-gavel"></i> Ban Appeals</h2>
+                        <div class="filter-options">
+                            <select id="ban-appeal-filter">
+                                <option value="all">All Appeals</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="ban-appeals-list" id="ban-appeals-list">
+                        <!-- Sample ban appeals -->
+                        <div class="appeal-card" data-id="ban1">
+                            <div class="appeal-header">
+                                <h3>ClassD_Player123</h3>
+                                <span class="status pending">Pending</span>
+                            </div>
+                            <div class="appeal-details">
+                                <p><strong>Ban Date:</strong> 2023-05-15</p>
+                                <p><strong>Discord:</strong> ClassD123#5678</p>
+                                <p><strong>Reason:</strong> Using exploits</p>
+                                <p><strong>Appeal:</strong> I wasn't using exploits, it was a game bug...</p>
+                            </div>
+                            <div class="appeal-actions">
+                                <button class="view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                <button class="reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Mute Appeals Section -->
+                <section id="mute-appeals" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-microphone-slash"></i> Mute Appeals</h2>
+                        <div class="filter-options">
+                            <select id="mute-appeal-filter">
+                                <option value="all">All Appeals</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mute-appeals-list" id="mute-appeals-list">
+                        <!-- Sample mute appeals -->
+                        <div class="appeal-card" data-id="mute1">
+                            <div class="appeal-header">
+                                <h3>MTF_Commander</h3>
+                                <span class="status pending">Pending</span>
+                            </div>
+                            <div class="appeal-details">
+                                <p><strong>Mute Date:</strong> 2023-05-20</p>
+                                <p><strong>Discord:</strong> MTF_Commander#1111</p>
+                                <p><strong>Type:</strong> Voice Chat</p>
+                                <p><strong>Reason:</strong> Excessive noise/mic spam</p>
+                                <p><strong>Appeal:</strong> It wasn't intentional, my mic was malfunctioning...</p>
+                            </div>
+                            <div class="appeal-actions">
+                                <button class="view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="approve-btn"><i class="fas fa-check"></i> Approve</button>
+                                <button class="reject-btn"><i class="fas fa-times"></i> Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Staff Accounts Section -->
+                <section id="staff-accounts" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-users-cog"></i> Staff Accounts</h2>
+                        <button class="add-btn" id="add-staff-btn"><i class="fas fa-plus"></i> Add New Staff</button>
+                    </div>
+                    
+                    <div class="staff-list" id="staff-list">
+                        <!-- Staff list will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Add/Edit Staff Modal -->
+                    <div class="modal" id="staff-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 id="modal-title">Add New Staff</h3>
+                                <button class="close-modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="staff-form">
+                                    <div class="form-group">
+                                        <label for="staff-username">Username</label>
+                                        <input type="text" id="staff-username" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="staff-password">Password</label>
+                                        <input type="password" id="staff-password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="staff-role">Role</label>
+                                        <select id="staff-role" required>
+                                            <option value="admin">Admin</option>
+                                            <option value="moderator">Moderator</option>
+                                            <option value="helper">Helper</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Permissions</label>
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" id="perm-applications"> Manage Applications
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" id="perm-appeals"> Manage Appeals
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" id="perm-accounts"> Manage Staff Accounts
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="staff-id">
+                                    <div class="form-actions">
+                                        <button type="submit" class="save-btn">Save</button>
+                                        <button type="button" class="cancel-btn">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Settings Section -->
+                <section id="settings" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-cog"></i> Settings</h2>
+                    </div>
+                    
+                    <div class="settings-container">
+                        <div class="settings-group">
+                            <h3>Account Settings</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Change Password</h4>
+                                    <p>Update your login password</p>
+                                </div>
+                                <button class="setting-btn" id="change-password-btn">Update</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-group">
+                            <h3>Notification Settings</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Email Notifications</h4>
+                                    <p>Receive email notifications for new applications and appeals</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="email-notifications" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <h4>Desktop Notifications</h4>
+                                    <p>Show desktop notifications when new items arrive</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="desktop-notifications">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Change Password Modal -->
+                    <div class="modal" id="password-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Change Password</h3>
+                                <button class="close-modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="password-form">
+                                    <div class="form-group">
+                                        <label for="current-password">Current Password</label>
+                                        <input type="password" id="current-password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new-password">New Password</label>
+                                        <input type="password" id="new-password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirm-password">Confirm New Password</label>
+                                        <input type="password" id="confirm-password" required>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="save-btn">Update Password</button>
+                                        <button type="button" class="cancel-btn">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <script src="dashboard.js"></script>
+</body>
+</html>
