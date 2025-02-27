@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Source+Code+Pro:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #1b1b1b;
+    --secondary-color: #2d2d2d;
+    --accent-color: #ff5722;
+    --text-color: #e6e6e6;
+    --highlight-color: #4CAF50;
+    --danger-color: #f44336;
+    --warning-color: #ff9800;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://wallpapercave.com/wp/wp5128415.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(255, 87, 34, 0.5));
+}
+
+h1 {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    opacity: 0.8;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.option-card {
+    background-color: rgba(45, 45, 45, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background-color: rgba(45, 45, 45, 0.9);
+    border-color: var(--accent-color);
+}
+
+.option-card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.option-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.option-card p {
+    opacity: 0.8;
+}
+
+#staff-option i {
+    color: var(--highlight-color);
+}
+
+#ban-option i {
+    color: var(--danger-color);
+}
+
+#mute-option i {
+    color: var(--warning-color);
+}
+
+.hidden {
+    display: none;
+}
+
+#back-button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#back-button:hover {
+    color: var(--accent-color);
+}
+
+#back-button i {
+    margin-right: 0.5rem;
+}
+
+.form {
+    background-color: rgba(45, 45, 45, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-in-out;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--accent-color);
+    font-family: 'Source Code Pro', monospace;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.2);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    margin-top: 0.5rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.range-value {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.note {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 0.5rem;
+    color: var(--warning-color);
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: #e64a19;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#success-message {
+    text-align: center;
+    padding: 3rem;
+    background-color: rgba(45, 45, 45, 0.9);
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease-in-out;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#success-message i {
+    font-size: 4rem;
+    color: var(--highlight-color);
+    margin-bottom: 1rem;
+}
+
+#success-message h2 {
+    margin-bottom: 1rem;
+    color: var(--highlight-color);
+}
+
+#success-message p {
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+#success-message .submit-btn {
+    background-color: var(--highlight-color);
+}
+
+#success-message .submit-btn:hover {
+    background-color: #3d8b40;
+}
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding-top: 2rem;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .option-card {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .form {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .logo {
+        width: 100px;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e64a19;
+}
